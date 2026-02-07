@@ -1,8 +1,16 @@
 # Team Blueprints for Claude Code
 
+*By [Chris Lannon](https://github.com/flywinger)*
+
 Reusable, portable team configurations for [Claude Code](https://claude.ai/code) multi-agent workflows.
 
-Define a team once — researchers, writers, designers, whatever roles you need — and launch it again with a single command. Blueprints are Markdown files with YAML frontmatter, so they're easy to read, edit, version control, and share.
+## The Problem
+
+Claude Code's agent teams are powerful — you can spin up multiple Claude instances that coordinate through shared task lists and message passing. But when the session ends, **the team is gone**. The configuration, the roles you defined, the task structure, the prompts you refined — all of it evaporates. Next time you want the same team, you start from scratch: re-describe each role, re-explain the workflow, re-specify the dependencies. And if you want that same team in a different project? You're doing it all over again.
+
+## The Solution
+
+Team Blueprints let you **save a team configuration once and launch it anywhere, any time**. A blueprint captures everything — members, models, roles, tasks, dependencies, and parameterized variables — in a portable Markdown file. Launch a three-person newsletter team with one command. Capture a team that worked well and reuse it next week. Install blueprints into other projects with a single script.
 
 ```
 > Launch the newsletter team
@@ -18,16 +26,14 @@ Spawning designer... done
 
 ---
 
-## What This Is
+## What's In the Box
 
-Claude Code supports **agent teams** — multiple Claude instances working in parallel, coordinating through a shared task list and message passing. This project adds a **blueprint layer** on top of that:
+- **Blueprints** — team composition, roles, tasks, and variables defined in portable Markdown with YAML frontmatter
+- **`team-launcher`** agent — reads a blueprint and spins up the full team automatically
+- **`team-capture`** agent — snapshots a running team back into a blueprint for reuse
+- **`install.sh`** — installs the framework + selected blueprints into any project
 
-- **Blueprints** define team composition, roles, tasks, and variables in a portable Markdown format
-- **`team-launcher`** reads a blueprint and spins up the full team automatically
-- **`team-capture`** snapshots a running team back into a blueprint for reuse
-- **`install.sh`** installs the framework + selected blueprints into any project
-
-Without blueprints, you'd describe your team from scratch every time. With them, you define it once and launch it repeatedly — with different inputs, in different projects.
+Define it once, launch it repeatedly — with different inputs, in different projects.
 
 ---
 
@@ -315,6 +321,12 @@ These are current limitations of Claude Code agent teams (not this project speci
 
 ---
 
+## Author
+
+**Chris Lannon** — [GitHub](https://github.com/flywinger)
+
+---
+
 ## License
 
-MIT
+MIT — see [LICENSE](LICENSE) for details.
