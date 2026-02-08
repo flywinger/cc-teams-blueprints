@@ -12,6 +12,37 @@ Claude Code's agent teams are powerful — you can spin up multiple Claude insta
 
 Team Blueprints let you **save a team configuration once and launch it anywhere, any time**. A blueprint captures everything — members, models, roles, tasks, dependencies, and parameterized variables — in a portable Markdown file. Launch a three-person newsletter team with one command. Capture a team that worked well and reuse it next week. Install blueprints into other projects with a single script.
 
+**Build a team interactively, then capture it:**
+
+```
+> Create a team called "newsletter" with three members:
+  - a researcher (Sonnet) who finds compelling angles and data on the topic
+  - a writer (Sonnet) who crafts engaging, scannable newsletter content
+  - a designer (Sonnet) who builds a responsive HTML email from a template
+
+  Tasks: researcher gathers material, writer drafts the newsletter
+  (blocked by research), designer produces final HTML (blocked by writing).
+
+Creating team "newsletter"... done
+Spawning researcher... done
+Spawning writer... done
+Spawning designer... done
+3 tasks created, team is running.
+```
+
+Watch the team work. Adjust roles, prompts, or tasks until the workflow is right. Then save it:
+
+```
+> Save this team as a blueprint
+
+Capturing team "newsletter"...
+Reading team config and task list...
+Debriefing active teammates...
+Blueprint saved to .claude/team-blueprints/newsletter/blueprint.md
+```
+
+**Now launch it any time with different inputs:**
+
 ```
 > Launch the newsletter team
 
@@ -23,6 +54,8 @@ Spawning writer... done
 Spawning designer... done
 3 tasks created, team is running.
 ```
+
+The captured blueprint is a portable Markdown file — install it into other projects with a single script, share it with your team, or iterate on it over time.
 
 ---
 
