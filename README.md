@@ -1,4 +1,4 @@
-# Team Blueprints for Claude Code
+# Claude Code Agent Team Builder
 
 *By [Chris Lannon](https://github.com/flywinger)*
 
@@ -102,8 +102,8 @@ export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1
 Clone the repo and start Claude Code:
 
 ```bash
-git clone https://github.com/flywinger/cc-agent-team.git
-cd cc-agent-team
+git clone https://github.com/flywinger/cc-agent-team-builder.git
+cd cc-agent-team-builder
 claude
 ```
 
