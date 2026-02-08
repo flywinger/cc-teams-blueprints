@@ -31,6 +31,7 @@ Spawning designer... done
 - **Blueprints** — team composition, roles, tasks, and variables defined in portable Markdown with YAML frontmatter
 - **`team-launcher`** agent — reads a blueprint and spins up the full team automatically
 - **`team-capture`** agent — snapshots a running team back into a blueprint for reuse
+- **`/teams`** slash command — lists all available blueprints with members, variables, and location
 - **`install.sh`** — installs the framework + selected blueprints into any project
 
 Define it once, launch it repeatedly — with different inputs, in different projects.
@@ -108,6 +109,12 @@ claude
 ```
 
 Then tell Claude:
+
+```
+/teams
+```
+
+This lists all available blueprints with their members, variables, and location. To launch one:
 
 ```
 Launch the newsletter team
@@ -197,6 +204,8 @@ A two-member research-and-write team (proof of concept).
 ├── agents/
 │   ├── team-launcher.md      # Reads blueprints, creates teams
 │   └── team-capture.md       # Captures running teams as blueprints
+├── commands/
+│   └── teams.md              # /teams slash command — lists available blueprints
 └── team-blueprints/
     ├── newsletter/
     │   ├── blueprint.md       # Team definition (YAML frontmatter + docs)
