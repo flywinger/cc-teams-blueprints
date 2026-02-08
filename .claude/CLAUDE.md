@@ -26,9 +26,21 @@ make install TARGET=~/my-project BLUEPRINT=newsletter
 ```
 
 Within a Claude Code session:
+
+### a) Launch a team from a blueprint
 - **Launch a team**: `Launch the newsletter team` (invokes `team-launcher` agent)
-- **Capture a team**: `Save this team as a blueprint` (invokes `team-capture` agent)
 - **List blueprints**: `/teams` slash command or `What team blueprints are available?`
+
+### b) Create a team ad-hoc, then capture it
+Build a team interactively in Claude Code using the built-in tools:
+
+1. **Create the team** — `TeamCreate` sets up a team with a shared task list.
+2. **Create tasks** — `TaskCreate` defines work items with descriptions and dependencies.
+3. **Spawn members** — `Task` tool with `team_name` and `name` parameters launches agents that join the team.
+4. **Assign work** — `TaskUpdate` with `owner` assigns tasks to members; `SendMessage` coordinates.
+5. **Iterate** — the team works, you monitor, adjust tasks, and resolve blockers.
+6. **Capture it** — when the workflow is dialed in, save it for reuse:
+   `Save this team as a blueprint` (invokes `team-capture` agent)
 
 ## Architecture
 
