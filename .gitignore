@@ -3,3 +3,8 @@ newsletter.html
 
 # Scratchpad (ephemeral working files)
 scratchpad/
+
+# BMAD (installed per-project, not bundled)
+_bmad/
+_bmad-output/
+.claude/commands/bmad/
