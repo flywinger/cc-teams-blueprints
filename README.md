@@ -293,6 +293,10 @@ Explain when to use this team, what it produces, how to customize it, etc.
 
 ## Creating Your Own Blueprint
 
+There are two ways to create a blueprint: write one from scratch, or build a team ad-hoc and capture it.
+
+### Option A — Write a Blueprint from Scratch
+
 1. Create a directory: `.claude/team-blueprints/my-team/`
 2. Add `blueprint.md` with the YAML frontmatter format above
 3. Define members — who's on the team, what model they use, and their role via `prompt_override`
@@ -301,7 +305,57 @@ Explain when to use this team, what it produces, how to customize it, etc.
 6. Optionally add `templates/` for reusable assets
 7. Test: tell Claude to `Launch the my-team team`
 
-Or capture an existing team: after running a successful ad-hoc team, tell Claude to `Save this team as a blueprint` and the `team-capture` agent will generate the blueprint for you.
+### Option B — Build a Team Ad-Hoc, Then Capture It
+
+If you don't want to write YAML by hand, you can create a team interactively in Claude Code and then save it as a blueprint.
+
+**Step 1: Create a team in Claude Code**
+
+Tell Claude to create a team and describe what you want:
+
+```
+Create a team called "code-review" with two members:
+- a reviewer (Sonnet) who reads code and finds issues
+- a fixer (Sonnet) who implements the suggested fixes
+
+First task: reviewer analyzes src/ for bugs and code smells, saves findings.
+Second task: fixer addresses each finding (blocked by the first task).
+```
+
+Claude will call `TeamCreate`, spawn the members via the `Task` tool, and set up the tasks with dependencies. The team starts working immediately.
+
+**Step 2: Iterate until it works well**
+
+Watch the team work. If you want to adjust roles, add members, or change task descriptions, tell Claude directly — it can modify the running team. Once you're happy with the composition and workflow, move to the next step.
+
+**Step 3: Capture the team as a blueprint**
+
+While the team is still running (or just after it finishes), tell Claude:
+
+```
+Save this team as a blueprint
+```
+
+The `team-capture` agent will:
+1. Read the team's configuration from `~/.claude/teams/{team-name}/config.json`
+2. Read all tasks and their dependencies from `~/.claude/tasks/{team-name}/`
+3. Send debrief requests to active teammates (asking what they accomplished and what they'd recommend)
+4. Generate a complete `blueprint.md` with YAML frontmatter, task templates, and session notes
+5. Save it to `.claude/team-blueprints/{team-name}/blueprint.md`
+
+**Step 4: Refine and relaunch**
+
+The captured blueprint is immediately launchable, but you'll likely want to:
+- Add `variables` so you can reuse it with different inputs (replace hardcoded values with `{{placeholders}}`)
+- Tune `prompt_override` descriptions based on what worked
+- Adjust `max_turns` or `model` based on how the team performed
+- Add a `templates/` directory if the team needs reusable assets
+
+Then launch it:
+
+```
+Launch the code-review team
+```
 
 ---
 
